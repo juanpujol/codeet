@@ -385,7 +385,14 @@ module.exports = function (grunt) {
                 src: ['<%= config.app %>/**/*.cache.html'],
                 dest: '<%= config.app %>/scripts/templates.js'
             }
-        },        
+        },   
+
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['**']
+        }
     });
 
 

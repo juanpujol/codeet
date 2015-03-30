@@ -64,6 +64,10 @@
                 $body = angular.element(document.body);
                 $rootScope = $body.injector().get('$rootScope');
 
+                /*
+                    TODO: Grab the origin of request from query param to 
+                    authenticate the origin of event.
+                */
                 if (event.origin !== 'http://fiddle.jshell.net')
                     return;
                 
