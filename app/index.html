@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Codeet</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- <base href="/"> -->
+
+        <!--[if lt IE 10]>
+        <script>
+            var origin = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+            document.write('<base href="' + origin + '"/>');
+        </script>
+        <![endif]-->
+
+        <link rel="shortcut icon" href="/favicon.ico">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> -->
+    </head>
+  
+    <body>
+        <!--[if lt IE 10]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="container">
+            <div ng-view></div>
+        </div>
+
+        <!-- <iframe src="http://codee.me/4sdk2?doc=https://api.meplis.com/instance/some.json& bodyNode=content.content&nameNode=content.title&langNode=css&name=MyFile.css&lang=css" frameborder="0"></iframe> -->
+
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/controllers/editor-controller.js"></script>
+        <script src="scripts/directives/ui-ace-custom-directive.js"></script>
+        <!-- endbuild -->
+
+        <script>
+            var $body, $rootScope, codeetDocument;
+            
+            function receiveMessage (event) {
+                $body = angular.element(document.body);
+                $rootScope = $body.injector().get('$rootScope');
+
+                if (event.origin !== 'http://fiddle.jshell.net')
+                    return;
+                
+                if (event.data !== null) {
+                    codeetDocument = {
+                        opener: {
+                            source: event.source,
+                            origin: event.origin
+                        },
+                        data: {
+                            name: event.data.name,
+                            body: event.data.body
+                        }
+                    };
+
+                    $rootScope.$apply(function () {
+                        $rootScope.codeetDocument = codeetDocument;
+                    });
+                };
+            }
+
+            window.addEventListener('message', receiveMessage, false);
+        </script>
+    </body>
+</html>

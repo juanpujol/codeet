@@ -1,0 +1,63 @@
+// bower:scss
+// endbower
+
+$color1: #2c3e50;
+$color2: #34495e;
+
+html {
+    background-color: #141414;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.main-header {
+    height: 50px;
+    padding: 0 20px;
+    background-color: $color1;
+
+    h1.document-name {
+        margin: 0;
+        font-size: 22px;
+        color: white;
+        font-weight: 300;
+        line-height: 48px;
+        float: left;
+    }
+
+    .actions {
+        float: right;
+    }
+
+    .button {
+        font-family: 'Open Sans', sans-serif;
+        background-color: grey;
+        border: none;
+        font-size: 11px;
+        padding: 8px 20px;
+        cursor: pointer;
+        margin: 9px 0;
+        border-radius: 2px;
+        text-transform: uppercase;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &.button-save {
+            background-color: lighten($color2, 10%);;
+            color: white;
+        }
+
+        &.button-cancel {
+            background-color: darken($color2, 10%);
+            color: white;
+        }
+    }
+}
+
+.ace_editor {
+    font-size: 18px;
+}
