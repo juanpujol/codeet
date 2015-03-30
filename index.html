@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html class=no-js> <head> <meta charset=utf-8> <title>Codeet</title> <meta name=description content=""> <meta name=viewport content="width=device-width"> <!-- <base href="/"> --> <!--[if lt IE 10]>
+        <script>
+            var origin = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+            document.write('<base href="' + origin + '"/>');
+        </script>
+        <![endif]--> <link rel="shortcut icon" href=/6df2b309.favicon.ico> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel=stylesheet href=styles/9dd838ef.main.css> <!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> -->  <body> <!--[if lt IE 10]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]--> <div class=container> <div ng-view></div> </div> <!-- <iframe src="http://codee.me/4sdk2?doc=https://api.meplis.com/instance/some.json& bodyNode=content.content&nameNode=content.title&langNode=css&name=MyFile.css&lang=css" frameborder="0"></iframe> --> <script src=scripts/c8551c8a.vendor.js></script> <script src=scripts/bc2c5070.main.js></script> <script>var $body, $rootScope, codeetDocument;
+            
+            function receiveMessage (event) {
+                $body = angular.element(document.body);
+                $rootScope = $body.injector().get('$rootScope');
+
+                if (event.origin !== 'http://fiddle.jshell.net')
+                    return;
+                
+                if (event.data !== null) {
+                    codeetDocument = {
+                        opener: {
+                            source: event.source,
+                            origin: event.origin
+                        },
+                        data: {
+                            name: event.data.name,
+                            body: event.data.body
+                        }
+                    };
+
+                    $rootScope.$apply(function () {
+                        $rootScope.codeetDocument = codeetDocument;
+                    });
+                };
+            }
+
+            window.addEventListener('message', receiveMessage, false);</script>  
