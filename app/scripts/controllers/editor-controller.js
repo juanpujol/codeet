@@ -32,7 +32,7 @@ angular.module('codeet')
                 console.log('Ace Loaded', editor);
                 
                 if (window.opener) {
-                    window.opener.postMessage({message: 'codeet-loaded'}, $routeParams.origin);  
+                    window.opener.postMessage({ message: 'codeet-loaded' }, $routeParams.origin);  
                 };
             };
 
@@ -41,6 +41,14 @@ angular.module('codeet')
                     $scope.document.data.message = 'codeet-save';
                     $scope.document.opener.source.postMessage($scope.document.data, $scope.document.opener.origin);
                 };
-            }
+            };
+
+            $scope.close = function () {
+                /*
+                    TODO: Verify if document changed and prompt alert
+                    to confirm before closing.
+                */
+                window.close();
+            };
         }
     ])
