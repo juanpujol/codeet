@@ -30,7 +30,7 @@ angular.module('codeet')
 
             $scope.aceLoaded = function (editor) {
                 console.log('Ace Loaded', editor);
-                
+
                 if (window.opener) {
                     window.opener.postMessage({ message: 'codeet-loaded' }, $routeParams.origin);  
                 };
@@ -49,6 +49,10 @@ angular.module('codeet')
                     to confirm before closing.
                 */
                 window.close();
+
+                if (window.opener) {
+                    window.opener.postMessage({ message: 'codeet-closed' }, $routeParams.origin);  
+                };
             };
         }
     ])
