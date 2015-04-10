@@ -7,12 +7,15 @@ angular.module('codeet', [
     'ui.ace'
 ])
 
-    .config(['$locationProvider', '$sceProvider', function ($locationProvider, $sceProvider) {
-        // .html5Mode(true)
-        $locationProvider.hashPrefix('!');
-        $sceProvider.enabled(false);
+    .config([
+        '$locationProvider', 
+        '$sceProvider', 
+        function ($locationProvider, $sceProvider) {
+            $locationProvider.hashPrefix('!');
+            $sceProvider.enabled(false);
     }])
 
+    // Routing Setup
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -21,28 +24,7 @@ angular.module('codeet', [
             })
     }])
 
-    .factory('DocumentService', ['$http', '$q', function ($http, $q) {
-        return {
-            get: function () {
-                return $q(function (resolve, reject) {
-                    setTimeout(function () {
-                        if (window.codeet) {
-                            resolve(window.codeet);
-                        } else {
-                            resolve({
-                                data: {
-                                    name: 'Untitled Document',
-                                    body: ''   
-                                }
-                            });
-                        }
-                    }, 1000);
-                });
-            }
-        };
-    }]);
-
-// Initialize application
+// Initialize Application
 angular.element(document).ready(function() {
     angular.bootstrap(angular.element(document), ['codeet']);
 });
