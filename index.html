@@ -5,19 +5,26 @@
         </script>
         <![endif]--> <link rel="shortcut icon" href=/6df2b309.favicon.ico> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel=stylesheet href=styles/9dd838ef.main.css> <!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> -->  <body> <!--[if lt IE 10]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]--> <div class=container> <div ng-view></div> </div> <!-- <iframe src="http://codee.me/4sdk2?doc=https://api.meplis.com/instance/some.json& bodyNode=content.content&nameNode=content.title&langNode=css&name=MyFile.css&lang=css" frameborder="0"></iframe> --> <script src=scripts/c8551c8a.vendor.js></script> <script src=scripts/f66c4f13.main.js></script> <script>var $body, $rootScope, codeetDocument;
+        <![endif]--> <div class=container> <div ng-view></div> </div> <!-- <iframe src="http://codee.me/4sdk2?doc=https://api.meplis.com/instance/some.json& bodyNode=content.content&nameNode=content.title&langNode=css&name=MyFile.css&lang=css" frameborder="0"></iframe> --> <script src=scripts/c8551c8a.vendor.js></script> <script src=scripts/f66c4f13.main.js></script> <script>function getUrlParameter(sParam) {
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i = 0; i < sURLVariables.length; i++) {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == sParam) {
+                        return sParameterName[1];
+                    }
+                }
+            };         
+
+            var $body, $rootScope, codeetDocument;
             
             function receiveMessage (event) {
                 $body = angular.element(document.body);
                 $rootScope = $body.injector().get('$rootScope');
+                $routeParams = $body.injector().get('$routeParams');
 
-                /*
-                    TODO: Grab the origin of request from query param to 
-                    authenticate the origin of event.
-
-                    if (event.origin !== 'https://fiddle.jshell.net')
-                        return;
-                */
+                if (event.origin !== $routeParams.origin)
+                    return;
 
                 if (event.data.message === 'codeet-document') {
                     codeetDocument = {
