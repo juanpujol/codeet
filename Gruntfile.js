@@ -327,15 +327,12 @@ module.exports = function (grunt) {
                         '{,*/}*.html',
                         'styles/fonts/{,*/}*.*',
                         'states/**/*.html',
-                        '!**/*.cache.html'
+                        '!**/*.cache.html',
+                        'scripts/ace/**/*'
                     ]
                 }, {
                     src: 'node_modules/apache-server-configs/dist/.htaccess',
                     dest: '<%= config.dist %>/.htaccess'
-                }, {
-                    expand: true, 
-                    src: 'bower_components/ace-builds/src-min-noconflict/**', 
-                    dest: '<%= config.dist %>'
                 }]
             },
             styles: {

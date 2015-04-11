@@ -13,6 +13,8 @@
 
 <div class="windows">
     <div ui-ace="aceConfig" ng-model="document.data.body" id="editor"></div>
+
+    <div id="statusbar"></div>
 </div>
 
 <!-- Calculate editor height. -->
@@ -20,12 +22,13 @@
     var editorHeight = $(window).outerHeight(),
         headerHeight = $('.main-header').outerHeight();
 
-    $('#editor').css({ height: editorHeight - headerHeight });
+    // $('#editor').css({ height: editorHeight - headerHeight });
 
     $(function () {
-        if (window.location.port === '') {
-            ace.config.set('basePath', 'bower_components/ace-builds/src-min-noconflict');
+        // if (window.location.port === '') {
+            // ace.config.set('basePath', 'bower_components/ace-builds/src-min-noconflict');
+            ace.config.set('basePath', 'scripts/ace/src-min-noconflict');
             console.log(ace.config.get('basePath'));
-        };
+        // };
     })
 </script>

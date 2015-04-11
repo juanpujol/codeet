@@ -13,12 +13,15 @@ angular.module('codeet')
                 scope.aceConfig = {
                     theme: 'twilight',
                     mode: 'html',
-                    useWrapMode : true,
                     onLoad: scope.aceLoaded
                 };
 
                 var editor = ace.edit('editor');
                 editor.setShowPrintMargin(false);
+
+                // Setup status bar
+                var StatusBar = ace.require('ace/ext/statusbar').StatusBar;
+                var statusBarInstance = new StatusBar(editor, document.getElementById('statusbar'));
 
                 // Update content on document
                 $rootScope.$watch('codeetDocument', function (newValue, oldValue) {
