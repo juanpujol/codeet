@@ -11,12 +11,6 @@ angular.module('codeet')
         '$rootScope',
         '$routeParams',
         function ($scope, $rootScope, $routeParams) {
-            $scope.aceConfig = {
-                theme: 'twilight',
-                mode: 'html',
-                onLoad: $scope.aceLoaded
-            };
-
             $scope.document = {
                 data: {
                     name: 'Untitled Document',
@@ -29,8 +23,6 @@ angular.module('codeet')
             });
 
             $scope.aceLoaded = function (editor) {
-                console.log('Ace Loaded', editor);
-
                 if (window.opener) {
                     window.opener.postMessage({ message: 'codeet-loaded' }, $routeParams.origin);  
                 };

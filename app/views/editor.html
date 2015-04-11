@@ -2,20 +2,17 @@
     <h1 class="document-name">{{ document.data.name }}</h1>
 
     <div class="actions">
-        <button class="button button-save" ng-click="save()">Save</button>
-        <button class="button button-cancel" ng-click="close()">Close</button>
+        <button class="button button-icon" ng-click="save()">
+            <i class="fa fa-fw fa-save"></i>
+        </button>
+        <button class="button button-icon" ng-click="close()">
+            <i class="fa fa-fw fa-close"></i>
+        </button>
     </div>
 </header>
 
 <div class="windows">
-    <div ui-ace="{
-            theme: 'twilight',
-            mode: 'html',
-            onLoad: aceLoaded
-        }"
-        ng-model="document.data.body"
-        id="editor">
-    </div>
+    <div ui-ace="aceConfig" ng-model="document.data.body" id="editor"></div>
 </div>
 
 <!-- Calculate editor height. -->

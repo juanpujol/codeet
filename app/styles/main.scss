@@ -1,7 +1,7 @@
 // bower:scss
 // endbower
 
-$color1: #2c3e50;
+$color1: #27ae60;
 $color2: #34495e;
 
 html {
@@ -46,14 +46,21 @@ body {
             opacity: 0.8;
         }
 
-        &.button-save {
-            background-color: lighten($color2, 10%);;
+        &.button-icon {
+            padding: 6px;
+            margin: 5px 0 5px 5px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            border: 1px solid transparent;
+            background-color: transparent;
             color: white;
-        }
+            border-color: white;
 
-        &.button-cancel {
-            background-color: darken($color2, 10%);
-            color: white;
+            &:hover {
+                opacity: 1;
+                background-color: white;
+                color: $color1;
+            }
         }
     }
 }
