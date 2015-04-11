@@ -17,18 +17,9 @@
     <div id="statusbar"></div>
 </div>
 
-<!-- Calculate editor height. -->
 <script>
-    var editorHeight = $(window).outerHeight(),
-        headerHeight = $('.main-header').outerHeight();
-
-    // $('#editor').css({ height: editorHeight - headerHeight });
-
     $(function () {
-        // if (window.location.port === '') {
-            // ace.config.set('basePath', 'bower_components/ace-builds/src-min-noconflict');
-            ace.config.set('basePath', 'scripts/ace/src-min-noconflict');
-            console.log(ace.config.get('basePath'));
-        // };
+        // Change basePath to load ace extensions.
+        ace.config.set('basePath', 'scripts/ace/src-min-noconflict');
     })
 </script>
