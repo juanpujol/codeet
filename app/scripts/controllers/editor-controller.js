@@ -11,6 +11,24 @@ angular.module('codeet')
         '$rootScope',
         '$routeParams',
         function ($scope, $rootScope, $routeParams) {
+
+            function keydownListener(event) {
+                if (event.ctrlKey || event.metaKey) {
+                    switch (String.fromCharCode(event.which).toLowerCase()) {
+                    case 's':
+                        event.preventDefault();
+                        $scope.save();
+                        break;
+                    }
+                }
+            }
+
+            $scope.$on('destroy', function () {
+                $(window).unbind('keydown', keydownListener);
+            });
+
+            $(window).bind('keydown', keydownListener);
+
             $scope.document = {
                 data: {
                     name: 'Untitled Document',
@@ -46,5 +64,6 @@ angular.module('codeet')
                     window.opener.postMessage({ message: 'codeet-closed' }, $routeParams.origin);  
                 };
             };
+
         }
     ])
