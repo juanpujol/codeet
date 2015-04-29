@@ -1,21 +1,23 @@
-<header class="main-header">
-    <h1 class="document-name">{{ document.data.name }}</h1>
+<form name="editorForm" ng-submit="save()">
+    <header class="main-header">
+        <h1 class="document-name">{{ document.data.name }}</h1>
 
-    <div class="actions">
-        <button class="button button-icon" ng-click="save()">
-            <i class="fa fa-fw fa-save"></i>
-        </button>
-        <button class="button button-icon" ng-click="close()">
-            <i class="fa fa-fw fa-close"></i>
-        </button>
+        <div class="actions">
+            <button ng-show="editorForm.$dirty" class="button button-icon">
+                <i class="fa fa-fw fa-save"></i>
+            </button>
+            <button type="button" class="button button-icon" ng-click="close()">
+                <i class="fa fa-fw fa-close"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="windows">
+        <div ui-ace="aceConfig" ng-model="document.data.body" id="editor"></div>
+
+        <div id="statusbar"></div>
     </div>
-</header>
-
-<div class="windows">
-    <div ui-ace="aceConfig" ng-model="document.data.body" id="editor"></div>
-
-    <div id="statusbar"></div>
-</div>
+</form>
 
 <script>
     $(function () {

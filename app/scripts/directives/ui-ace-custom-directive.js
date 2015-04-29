@@ -7,6 +7,9 @@ angular.module('codeet')
     .directive('uiAce', ['$rootScope', function ($rootScope) {
         return {
             link: function (scope, element, attrs) {
+
+                var editor, StatusBar, statusBarInstance;
+
                 // More initial setup for ace
                 element.css({ fontSize: '18px' });
 
@@ -16,20 +19,13 @@ angular.module('codeet')
                     onLoad: scope.aceLoaded
                 };
 
-                var editor = ace.edit('editor');
+                editor = ace.edit('editor');
                 editor.setShowPrintMargin(false);
 
                 // Setup status bar
-                var StatusBar = ace.require('ace/ext/statusbar').StatusBar;
-                var statusBarInstance = new StatusBar(editor, document.getElementById('statusbar'));
+                StatusBar = ace.require('ace/ext/statusbar').StatusBar;
+                statusBarInstance = new StatusBar(editor, document.getElementById('statusbar'));
 
-                // Update content on document
-                $rootScope.$watch('codeetDocument', function (newValue, oldValue) {
-                    if(newValue) {
-                        scope.document = newValue;
-                        console.log('codeetDocument watcher...');
-                    };
-                });
             }
         }
     }]);

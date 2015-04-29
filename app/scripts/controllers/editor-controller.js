@@ -28,6 +28,12 @@ angular.module('codeet')
             });
 
             $(window).bind('keydown', keydownListener);
+            console.log($scope, $rootScope);
+
+            $scope.$watch('editorForm', function (newValue) {
+                $rootScope.editorForm = newValue;
+            });
+
 
             $scope.document = {
                 data: {
@@ -36,8 +42,12 @@ angular.module('codeet')
                 }
             };
 
-            $rootScope.$watch('codeetDocument', function () {
-                console.log($rootScope.codeetDocument);
+            // Update content on document
+            $rootScope.$watch('codeetDocument', function (newValue, oldValue) {
+                if(newValue) {
+                    $scope.document = newValue;
+                    $scope.editorForm.$setPristine();
+                };
             });
 
             $scope.aceLoaded = function (editor) {
@@ -47,17 +57,19 @@ angular.module('codeet')
             };
 
             $scope.save = function () {
-                if ($scope.document && $scope.document.opener) {
+                if ($scope.editorForm.$dirty && $scope.document && $scope.document.opener) {
                     $scope.document.data.message = 'codeet-save';
                     $scope.document.opener.source.postMessage($scope.document.data, $scope.document.opener.origin);
+                    $scope.editorForm.$setPristine();
+
+                    if(!$rootScope.$$phase) {
+                      $rootScope.$apply();
+                    }
                 };
             };
 
             $scope.close = function () {
-                /*
-                    TODO: Verify if document changed and prompt alert
-                    to confirm before closing.
-                */
+
                 window.close();
 
                 if (window.opener) {
