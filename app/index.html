@@ -97,10 +97,11 @@
                     return 'There are unsaved changes in this document.';
                 }
 
+                window.opener.postMessage({ message: 'codeet-closed' }, $routeParams.origin);
+
             }
 
             window.addEventListener('message', receiveMessage, false);
-            //window.addEventListener('beforeunload', onWindowClose, false);
             window.onbeforeunload = onWindowClose;
         </script>
     </body>

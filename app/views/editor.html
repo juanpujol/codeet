@@ -1,6 +1,6 @@
 <form name="editorForm" ng-submit="save()">
     <header class="main-header">
-        <h1 class="document-name">{{ document.data.name }}</h1>
+        <h1 class="document-name">{{ document.data.name + (editorForm.$dirty ? ' *' : '') }}</h1>
 
         <div class="actions">
             <button ng-show="editorForm.$dirty" class="button button-icon">

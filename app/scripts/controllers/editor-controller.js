@@ -12,8 +12,10 @@ angular.module('codeet')
         '$routeParams',
         function ($scope, $rootScope, $routeParams) {
 
+            var metaCtrlKey = (navigator && navigator.platform.match(/^mac/gi)) ? 'metaKey' : 'ctrlKey';
+
             function keydownListener(event) {
-                if (event.ctrlKey || event.metaKey) {
+                if (event[metaCtrlKey]) {
                     switch (String.fromCharCode(event.which).toLowerCase()) {
                     case 's':
                         event.preventDefault();
@@ -28,7 +30,6 @@ angular.module('codeet')
             });
 
             $(window).bind('keydown', keydownListener);
-            console.log($scope, $rootScope);
 
             $scope.$watch('editorForm', function (newValue) {
                 $rootScope.editorForm = newValue;
@@ -73,7 +74,7 @@ angular.module('codeet')
                 window.close();
 
                 if (window.opener) {
-                    window.opener.postMessage({ message: 'codeet-closed' }, $routeParams.origin);  
+                    window.opener.postMessage({ message: 'codeet-closed' }, $routeParams.origin);
                 };
             };
 
