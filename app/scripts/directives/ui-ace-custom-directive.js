@@ -11,12 +11,16 @@ angular.module('codeet')
                 var editor, StatusBar, statusBarInstance;
 
                 // More initial setup for ace
-                element.css({ fontSize: '18px' });
+                element.css({ fontSize: '20px' });
 
                 scope.aceConfig = {
                     theme: 'twilight',
                     mode: 'html',
-                    onLoad: scope.aceLoaded
+                    onLoad: scope.aceLoaded,
+                    require: ['ace/ext/emmet'],
+                    advanced: {
+                        enableEmmet: true
+                    }
                 };
 
                 editor = ace.edit('editor');
@@ -25,7 +29,6 @@ angular.module('codeet')
                 // Setup status bar
                 StatusBar = ace.require('ace/ext/statusbar').StatusBar;
                 statusBarInstance = new StatusBar(editor, document.getElementById('statusbar'));
-
             }
         }
     }]);
